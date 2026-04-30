@@ -22,10 +22,6 @@ Double-click index.html  →  open in any modern browser
 # Node.js
 npx serve .
 ```
-
-### Option C — VS Code
-Install the **Live Server** extension, right-click `index.html` → **Open with Live Server**.
-
 ## Features
 
 ### Product Browsing
