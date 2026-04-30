@@ -1,0 +1,16 @@
+body {
+  background-color: #f5f7fb;
+}
+
+.product-image {
+  height: 220px;
+  object-fit: cover;
+}
+
+.card {
+  border-radius: 14px;
+}
+
+.btn {
+  border-radius: 8px;
+}
