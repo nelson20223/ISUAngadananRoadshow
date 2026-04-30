@@ -1,119 +1,164 @@
 # ISU Angadanan Roadshow — Product Management App
 
-A React + Vite single-page application for managing products. Built with a dark UI theme and connected to a REST API backend.
+A React-based product management web application built with Vite, Bootstrap 5, and Axios. It connects to a live REST API to perform full CRUD operations on products, with support for search, filtering, sorting, and pagination.
 
 ---
 
 ## Features
 
-- **Browse Products** — View all products in a responsive card grid with product images, prices, and quantities.
-- **Search** — Filter products by name in real time.
-- **Filter** — Narrow results by price range (min/max) and minimum quantity.
-- **Sort** — Sort by product name, price, or quantity in ascending or descending order.
-- **Pagination** — Navigate through multiple pages of results.
-- **Add Product** — Create a new product with name, price, quantity, and an optional image upload.
-- **Edit Product** — Update an existing product's details and image.
-- **Delete Product** — Remove a product with a confirmation prompt.
+- Browse products with image, name, price, and quantity
+- Create, update, and delete products
+- Search by product name
+- Filter by price range and minimum quantity
+- Sort by name, price, or quantity (ascending/descending)
+- Paginated product listing
+- Philippine Peso (₱) price formatting
 
 ---
 
 ## Tech Stack
 
-| Layer      | Technology                     |
-|------------|-------------------------------|
-| UI Library | React 19                      |
-| Build Tool | Vite 8                        |
-| Styling    | Bootstrap 5 + custom CSS      |
-| HTTP       | Axios                         |
-| Backend    | REST API at `kwikweb.live`    |
+| Layer      | Technology               |
+|------------|--------------------------|
+| Framework  | React 19 + Vite 8        |
+| Styling    | Bootstrap 5              |
+| HTTP       | Axios                    |
+| API        | `https://kwikweb.live/api/products` |
+
+---
+
+## Prerequisites
+
+Make sure you have the following installed before proceeding:
+
+- [Node.js](https://nodejs.org/) v18 or higher
+- npm v9 or higher (comes with Node.js)
+
+To verify:
+```bash
+node -v
+npm -v
+```
+
+---
+
+## Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone <your-repository-url>
+cd ISUAngadananRoadshow
+```
+
+### 2. Navigate to the app directory
+
+```bash
+cd product-management-app
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Start the development server
+
+```bash
+npm run dev
+```
+
+The app will be running at **http://localhost:5173** by default.
+
+---
+
+## Available Scripts
+
+| Script            | Description                                    |
+|-------------------|------------------------------------------------|
+| `npm run dev`     | Start the Vite development server with hot reload |
+| `npm run build`   | Build the app for production (outputs to `dist/`) |
+| `npm run preview` | Preview the production build locally           |
 
 ---
 
 ## Project Structure
 
 ```
-ISUAngadananRoadshow/
-└── product-management-app/
-    ├── public/
-    │   ├── favicon.svg
-    │   └── icons.svg
-    ├── src/
-    │   ├── api/
-    │   │   └── productApi.js       # Axios API calls (CRUD)
-    │   ├── assets/
-    │   ├── components/
-    │   │   ├── Pagination.jsx
-    │   │   ├── ProductCard.jsx
-    │   │   ├── ProductForm.jsx
-    │   │   ├── ProductList.jsx
-    │   │   └── SearchFilterSort.jsx
-    │   ├── pages/
-    │   │   └── ProductPage.jsx     # Main page with Browse & Manage tabs
-    │   ├── App.jsx
-    │   ├── main.jsx
-    │   ├── main.css
-    │   └── style.css
-    ├── index.html
-    └── package.json
+product-management-app/
+├── public/
+│   ├── favicon.svg
+│   └── icons.svg
+├── src/
+│   ├── api/
+│   │   └── productApi.js       # Axios API calls (GET, POST, PUT, DELETE)
+│   ├── assets/
+│   │   └── hero.png
+│   ├── components/
+│   │   ├── Pagination.jsx      # Pagination controls
+│   │   ├── ProductCard.jsx     # Individual product card
+│   │   ├── ProductForm.jsx     # Add/edit product form
+│   │   ├── ProductList.jsx     # Product grid layout
+│   │   └── SearchFilterSort.jsx # Search, filter, and sort controls
+│   ├── pages/
+│   │   └── ProductPage.jsx     # Main page with all state and logic
+│   ├── App.jsx                 # Root component
+│   ├── main.jsx                # React entry point
+│   ├── main.css                # Base styles
+│   └── style.css               # Custom styles
+├── index.html
+├── package.json
+└── package-lock.json
 ```
 
 ---
 
-## API Endpoints
+## API Reference
 
-Base URL: `https://kwikweb.live/api/products`
+All requests go to `https://kwikweb.live/api/products`.
 
-| Method | Endpoint              | Description        |
-|--------|-----------------------|--------------------|
-| GET    | `/api/products`       | List products      |
-| POST   | `/api/products`       | Create product     |
-| POST   | `/api/products/{id}`  | Update product (`_method=PUT`) |
-| DELETE | `/api/products/{id}`  | Delete product     |
+| Method | Endpoint               | Description          |
+|--------|------------------------|----------------------|
+| GET    | `/api/products`        | List products (supports query params) |
+| POST   | `/api/products`        | Create a new product |
+| POST   | `/api/products/{id}`   | Update a product (`_method=PUT` in body) |
+| DELETE | `/api/products/{id}`   | Delete a product     |
 
-Query parameters supported on `GET`:  
-`search`, `min_price`, `max_price`, `min_quantity`, `sort_by`, `sort_order`, `page`
+Supported query parameters for GET:
+
+| Parameter      | Description                         |
+|----------------|-------------------------------------|
+| `search`       | Filter by product name              |
+| `min_price`    | Minimum price filter                |
+| `max_price`    | Maximum price filter                |
+| `min_quantity` | Minimum quantity filter             |
+| `sort_by`      | Sort field: `name`, `price`, `quantity` |
+| `sort_order`   | `asc` or `desc`                     |
+| `page`         | Page number for pagination          |
 
 ---
 
-## Getting Started
+## Production Build
 
-### Prerequisites
-
-- Node.js 18 or higher
-- npm
-
-### Installation
-
-```bash
-# Clone the repository
-git clone <repo-url>
-cd ISUAngadananRoadshow/product-management-app
-
-# Install dependencies
-npm install
-```
-
-### Development
-
-```bash
-npm run dev
-```
-
-The app will be available at `http://localhost:5173`.
-
-### Production Build
+To build for production:
 
 ```bash
 npm run build
+```
+
+Output files will be in the `dist/` folder. You can then deploy those files to any static hosting service (e.g., Netlify, Vercel, GitHub Pages, or a web server).
+
+To preview the build locally before deploying:
+
+```bash
 npm run preview
 ```
 
 ---
 
-## Usage
+## Notes
 
-The app has two tabs:
-
-**Browse Products** — Read-only view of all products. Use the search bar, price/quantity filters, and sort controls to find what you need. Navigate pages with the Prev/Next buttons.
-
-**Manage Products** — Full CRUD view. Click **+ Add Product** to open the form modal. Use the **Edit** and **Delete** buttons on each row to modify or remove products.
+- Product images are served from `https://kwikweb.live/storage/`. If an image URL already starts with `http`, it is used as-is.
+- Prices are formatted in Philippine Peso (₱) using the `en-PH` locale.
+- The `node_modules/` folder is excluded from version control — always run `npm install` after cloning.
